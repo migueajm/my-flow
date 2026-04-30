@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Flow|@migueajm</title>
+		<link rel="stylesheet" href="/resources/css/app.css">
+		<link rel="stylesheet" href="/resources/font/icons.css">
+		<link rel="manifest" href="/resources/manifest.json">
+		<link rel="shortcut icon" href="https://migueajm.github.io/migueljimenezweb/assets/images/favicon.webp" type="image/x-icon">
+	</head>
+	<body>
+		<div class="app">
+			<aside class="sidebar">
+				<h2>💰 Flow</h2>
+				<a href="#dashboard" data-view="dashboard" class="nav active locale" data-es="Tablero" data-en="Dashboard"></a>
+				<a href="#expenses" data-view="expenses" class="nav locale" data-es="Gastos" data-en="Expenses"></a>
+				<a href="#settings" data-view="settings" class="nav locale" data-es="Configuración" data-en="Settings"></a>
+				<button id="theme">🌗</button>
+			</aside>
+			<div id="overlay" onclick="overlayClick()"></div>
+			<button class="menu-btn" onclick="toggleMenu()">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+			<main class="main">
+				<div class="container" style="height: calc(100dvh - 3rem)">
+					<header>
+						<div class="row">
+							<div class="col col-sm-4 offset-sm-8">
+								<label for="filterType" class="form-label locale" data-es="Filtro por" data-en="Filter by"></label>
+								<select id="filterType" class="form-select">
+									<option value="all" data-es="Todos" data-en="All" class="locale"></option>
+									<option value="day" data-es="Día" data-en="Day" class="locale"></option>
+									<option value="range" data-es="Rango" data-en="Range" class="locale"></option>
+									<option value="month" data-es="Mes" data-en="Month" class="locale"></option>
+								</select>
+							</div>
+						</div>
+						<input type="date" id="day" class="hidden">
+						<input type="date" id="start" class="hidden">
+						<input type="date" id="end" class="hidden">
+						<input type="month" id="month" class="hidden">
+					</header>
+					<section id="dashboard" class="view active">
+						<div id="cards"></div>
+						<canvas id="pie"></canvas>
+						<canvas id="line"></canvas>
+						<div id="alerts"></div>
+					</section>
+					<section id="expenses" class="view">
+						<div class="card card-body">
+							<table id="expensesTable" class="table table-hover table-striped" width="100%">
+								<thead>
+									<tr>
+										<th data-es="Descripción" data-en="Description"></th>
+										<th data-es="Gastos" data-en="Amount"></th>
+										<th data-es="Categoría" data-en="Category"></th>
+										<th data-es="Fecha" data-en="Date"></th>
+										<th data-es="Acciones" data-en="Actions"></th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<a class="default-btn floating-btn" style="position: absolute; top: -3.5rem; left: 0rem;" onclick="openExpenseModal()"><i class="bi bi-plus"></i></a>
+					</section>
+					<section id="settings" class="view"></section>
+				</div>
+			</main>
+		</div>
+		<script>
+			const _version = "1.0.0";
+		</script>
+		<script src="./resources/js/Utilities/jquery.min.js"></script>
+		<script src="./resources/js/Utilities/bootstrap.min.js"></script>
+		<script src="./resources/js/Utilities/bootstrap.bundle.min.js"></script>
+		<script src="./resources/js/Utilities/datatable.min.js"></script>
+		<script type="module" src="./resources/js/app.js?version=1.0.0"></script>
+	</body>
+</html>
