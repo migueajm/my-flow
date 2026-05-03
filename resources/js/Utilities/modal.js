@@ -24,7 +24,6 @@ export class Modal {
 		this.bsModal = null;
 		this.isInitialized = false;
 		this.onConfirm = onConfirm;
-		this._createModalElement();
 	}
 
 	_createModalElement() {
@@ -42,7 +41,7 @@ export class Modal {
 						<div class="modal-body">${bodyContent}</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary cancel-btn" data-bs-dismiss="modal">${this.closeText}</button>
-							<button type="button" class="btn btn-login confirm-btn ${this.hiddenAction ? 'd-none' : ''}">${this.actionText}</button>
+							<button type="button" class="btn confirm-btn ${this.hiddenAction ? 'd-none' : ''}">${this.actionText}</button>
 						</div>
 					</div>
 				</div>
@@ -73,7 +72,7 @@ export class Modal {
 
 	_initializeModalLogic() {
 		const confirmBtn = this.modalElement.querySelector('.confirm-btn');
-		confirmBtn.addEventListener('click', (e) => {
+		confirmBtn?.addEventListener('click', (e) => {
 			if (typeof this.onConfirm === 'function') {
 				this.onConfirm(e.currentTarget);
 			}

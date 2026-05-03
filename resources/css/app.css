@@ -20,6 +20,10 @@ table.dataTable td.dt-control{text-align:center;cursor:pointer}table.dataTable t
 	--font-error-size: 0.85rem;
   --font-error-weight: 500;
   --error-margin-top: 0.25rem;
+  --bg-btn: var(--border);
+  --color-btn: var(--primary);
+  --hover-btn: var(--primary);
+  --color-hover-btn: #ffffff;
 }
 
 .light{
@@ -28,6 +32,9 @@ table.dataTable td.dt-control{text-align:center;cursor:pointer}table.dataTable t
 	--card:#fff;
 	--border:#00000026;
 	--toast-bg: rgba(255, 255, 255, 0.6);
+  --bg-btn: var(--primary);
+  --color-btn: #fff;
+  --hover-btn: var(--border);
 }
 
 body{margin:0;background:var(--bg);color:var(--text);font-family:sans-serif}
@@ -94,25 +101,30 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:sans-serif}
 	pointer-events: all;
 }
 
+.btn, .menu-btn, .default-btn {
+  position: relative;
+  background: var(--bg-btn);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--color-btn);
+}
+
 .menu-btn, .default-btn {
 	  width: 40px;
     height: 40px;
-    position: relative;
-    background: var(--card);
-    border: none;
-    border-radius: 8px;
-		cursor: pointer;
-		color: var(--primary);
 }
 
-.menu-btn:hover, .default-btn:hover {
-	background: var(--border);
+.menu-btn:hover, .default-btn:hover, .btn:hover, .floating-btn:hover  {
+	background: var(--hover-btn);
+  color: var(--color-hover-btn);
+  transition: all 0.3s ease;
 }
 
 .menu-btn {
 	display: none;
 	position: absolute;
-  top: 1rem;
+  top: 0.2rem;
   right: 1rem;
   z-index: 1001;
 }
@@ -185,10 +197,6 @@ select:focus,
 div:has(select) {
 	position: relative;
   top: 0.55rem;
-}
-
-.main>.container {
-	margin-top: 2rem;
 }
 
 .app-loader-backdrop {
@@ -361,10 +369,6 @@ div:has(select) {
   font-size: 2rem;
 }
 
-.floating-btn:hover {
-  background-color: var(--color-primary-dark);
-}
-
 header {
   position: sticky;
   top: 1rem;
@@ -380,6 +384,35 @@ section {
 #cards .card {
   position: relative;
   top: -3.75rem;
+}
+
+.main>.nav {
+  position: sticky;
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  top: 0rem;
+  height: 3rem;
+  background-color: var(--card);
+  margin: 0;
+  padding-right: 1rem;
+  z-index: 1;
+}
+
+.modal-content {
+  background-color: var(--card);
+}
+
+form {
+  margin-bottom: 1rem;
+}
+
+.modal .btn-close {
+  color: var(--text);
+}
+
+table, td, th {
+  color: var(--text) !important;
 }
 
 @keyframes fadeIn {

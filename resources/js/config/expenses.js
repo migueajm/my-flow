@@ -1,5 +1,16 @@
 import {categories} from './categories.js';
 export const expenses = {
+	"expenseId": {
+		"id": "expenseId",
+		"label": {
+			"es": "#",
+			"en": "#"
+		},
+		"type": "text",
+		"required": true,
+		"hidden": true,
+		"parentClass": "col col-sm-12",
+	},
 	"category": {
 		"id": "category",
 		"label": {
@@ -40,16 +51,5 @@ export const expenses = {
 		"type": "datetime-local",
 		"required": true,
 		"parentClass": "col col-sm-12 col-md-6"
-	},
-	"save-expense": {
-		"id": "save-expense",
-		"label": {
-			"es": "Guardar gasto",
-			"en": "Save expense"
-		},
-		"type": "button",
-		"required": false,
-		"parentClass": "form-button",
-		"onClick": "saveExpense()"
 	}
 }

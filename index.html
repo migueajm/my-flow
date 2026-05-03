@@ -13,10 +13,10 @@
 		<div class="app">
 			<aside class="sidebar">
 				<h2>💰 Flow</h2>
-				<a href="#dashboard" data-view="dashboard" class="nav active locale" data-es="Tablero" data-en="Dashboard"></a>
-				<a href="#expenses" data-view="expenses" class="nav locale" data-es="Gastos" data-en="Expenses"></a>
-				<a href="#settings" data-view="settings" class="nav locale" data-es="Configuración" data-en="Settings"></a>
-				<button id="theme">🌗</button>
+				<a id="dashboard-link" href="#dashboard" data-view="dashboard" class="nav active locale" data-es="Tablero" data-en="Dashboard"></a>
+				<a id="expenses-link" href="#expenses" data-view="expenses" class="nav locale" data-es="Gastos" data-en="Expenses"></a>
+				<a id="settings-btn" class="nav locale" data-es="Configuración" data-en="Settings"></a>
+
 			</aside>
 			<div id="overlay" onclick="overlayClick()"></div>
 			<button class="menu-btn" onclick="toggleMenu()">
@@ -25,6 +25,11 @@
 				<span></span>
 			</button>
 			<main class="main">
+				<div class="nav">
+					<button class="default-btn" style="position: relative; top: 0.2rem;" onclick="toggleTheme()" data-dark="bi-sun-fill" data-light="bi-moon-fill">
+						<i class="bi bi-sun-fill text-white" data-dark="bi-sun-fill" data-light="bi-moon-fill"></i>
+					</button>
+				</div>
 				<div class="container" style="height: calc(100dvh - 3rem)">
 					<header>
 						<div class="row">
@@ -45,8 +50,27 @@
 					</header>
 					<section id="dashboard" class="view active">
 						<div id="cards"></div>
-						<canvas id="pie"></canvas>
-						<canvas id="line"></canvas>
+						<div class="row">
+							<div class="card col-sm-12">
+								<div class="row">
+									<div class="col-sm-6" style="display: flex; justify-content: center; align-items: center;">
+										<canvas id="pie"></canvas>
+									</div>
+									<div class="col-sm-6" id="pie-data">
+									</div>
+								</div>
+							</div>
+							<div class="card col-sm-12">
+								<div class="row">
+									<div class="col-sm-6">
+										<canvas id="line"></canvas>
+									</div>
+									<div class="col-sm-6" id="line-data">
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
 						<div id="alerts"></div>
 					</section>
 					<section id="expenses" class="view">
@@ -54,18 +78,17 @@
 							<table id="expensesTable" class="table table-hover table-striped" width="100%">
 								<thead>
 									<tr>
-										<th data-es="Descripción" data-en="Description"></th>
-										<th data-es="Gastos" data-en="Amount"></th>
-										<th data-es="Categoría" data-en="Category"></th>
-										<th data-es="Fecha" data-en="Date"></th>
-										<th data-es="Acciones" data-en="Actions"></th>
+										<th data-es="Descripción" data-en="Description" class="locale"></th>
+										<th data-es="Gastos" data-en="Amount" class="locale"></th>
+										<th data-es="Categoría" data-en="Category" class="locale"></th>
+										<th data-es="Fecha" data-en="Date" class="locale"></th>
+										<th data-es="Acciones" data-en="Actions" class="locale"></th>
 									</tr>
 								</thead>
 							</table>
 						</div>
 						<a class="default-btn floating-btn" style="position: absolute; top: -3.5rem; left: 0rem;" onclick="openExpenseModal()"><i class="bi bi-plus"></i></a>
 					</section>
-					<section id="settings" class="view"></section>
 				</div>
 			</main>
 		</div>

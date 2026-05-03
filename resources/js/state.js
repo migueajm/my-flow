@@ -18,9 +18,19 @@ export const setSalary = s => {
 	notify();
 };
 
+export const getSalary = () => {
+	return (new SecureStorageManager()).get('salary');
+};
+
 export const addExpense = e => {
-	e.id = Date.now();
+	e.expenseId = Date.now();
 	state.expenses.push(e);
+	SecureStorageManager.save('expenses', state.expenses);
+	notify();
+};
+
+export const updateExpense = (id, updatedExpense) => {
+	state.expenses = state.expenses.map(e => e.id === id ? { ...e, ...updatedExpense } : e);
 	SecureStorageManager.save('expenses', state.expenses);
 	notify();
 };
@@ -29,6 +39,10 @@ export const deleteExpense = id => {
 	state.expenses = state.expenses.filter(e => e.id != id);
 	SecureStorageManager.save('expenses', state.expenses);
 	notify();
+};
+
+export const getExpense = id => {
+	return state.expenses.find(e => e.expenseId === id);
 };
 
 export const setFilter = f => {
