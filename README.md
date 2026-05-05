@@ -38,7 +38,7 @@ python3 -m http.server 8080
 Luego abre:
 
 ```text
-http://localhost:8080/web_gastos_personales/
+http://localhost:8080/my-flow/
 ```
 
 Tambien puedes servir directamente esta carpeta desde cualquier servidor estatico.
