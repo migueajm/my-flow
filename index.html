@@ -1,104 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Flow|@migueajm</title>
-		<link rel="stylesheet" href="./resources/css/app.css">
-		<link rel="stylesheet" href="./resources/font/icons.css">
-		<link rel="manifest" href="./resources/manifest.json">
-		<link rel="shortcut icon" href="https://migueajm.github.io/migueljimenezweb/assets/images/favicon.webp" type="image/x-icon">
-	</head>
-	<body>
-		<div class="app">
-			<aside class="sidebar">
-				<h2>💰 Flow</h2>
-				<a id="dashboard-link" href="#dashboard" data-view="dashboard" class="nav active locale" data-es="Tablero" data-en="Dashboard"></a>
-				<a id="expenses-link" href="#expenses" data-view="expenses" class="nav locale" data-es="Gastos" data-en="Expenses"></a>
-				<a id="settings-btn" class="nav locale" data-es="Configuración" data-en="Settings"></a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gastos Personales Web</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="./src/main.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">$</div>
+          <div>
+            <strong>Gastos Personales</strong>
+            <span>Presupuesto 80/20</span>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Principal">
+          <button class="nav-link active" data-route="dashboard">Dashboard</button>
+          <button class="nav-link" data-route="expenses">Gastos</button>
+          <button class="nav-link" data-route="income">Ingresos</button>
+          <button class="nav-link" data-route="savings">Ahorros</button>
+          <button class="nav-link" data-route="reports">Reportes</button>
+        </nav>
+      </aside>
 
-			</aside>
-			<div id="overlay" onclick="overlayClick()"></div>
-			<button class="menu-btn" onclick="toggleMenu()">
-				<span></span>
-				<span></span>
-				<span></span>
-			</button>
-			<main class="main">
-				<div class="nav">
-					<button class="default-btn" style="position: relative; top: 0.2rem;" onclick="toggleTheme()" data-dark="bi-sun-fill" data-light="bi-moon-fill">
-						<i class="bi bi-sun-fill text-white" data-dark="bi-sun-fill" data-light="bi-moon-fill"></i>
-					</button>
-				</div>
-				<div class="container" style="height: calc(100dvh - 3rem)">
-					<header>
-						<div class="row">
-							<div class="col col-sm-4 offset-sm-8">
-								<label for="filterType" class="form-label locale" data-es="Filtro por" data-en="Filter by"></label>
-								<select id="filterType" class="form-select">
-									<option value="all" data-es="Todos" data-en="All" class="locale"></option>
-									<option value="day" data-es="Día" data-en="Day" class="locale"></option>
-									<option value="range" data-es="Rango" data-en="Range" class="locale"></option>
-									<option value="month" data-es="Mes" data-en="Month" class="locale"></option>
-								</select>
-							</div>
-						</div>
-						<input type="date" id="day" class="hidden">
-						<input type="date" id="start" class="hidden">
-						<input type="date" id="end" class="hidden">
-						<input type="month" id="month" class="hidden">
-					</header>
-					<section id="dashboard" class="view active">
-						<div id="cards"></div>
-						<div class="row">
-							<div class="card col-sm-12">
-								<div class="row">
-									<div class="col-sm-6" style="display: flex; justify-content: center; align-items: center;">
-										<canvas id="pie"></canvas>
-									</div>
-									<div class="col-sm-6" id="pie-data">
-									</div>
-								</div>
-							</div>
-							<div class="card col-sm-12">
-								<div class="row">
-									<div class="col-sm-6">
-										<canvas id="line"></canvas>
-									</div>
-									<div class="col-sm-6" id="line-data">
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-						<div id="alerts"></div>
-					</section>
-					<section id="expenses" class="view">
-						<div class="card card-body">
-							<table id="expensesTable" class="table table-hover table-striped" width="100%">
-								<thead>
-									<tr>
-										<th data-es="Descripción" data-en="Description" class="locale"></th>
-										<th data-es="Gastos" data-en="Amount" class="locale"></th>
-										<th data-es="Categoría" data-en="Category" class="locale"></th>
-										<th data-es="Fecha" data-en="Date" class="locale"></th>
-										<th data-es="Acciones" data-en="Actions" class="locale"></th>
-									</tr>
-								</thead>
-							</table>
-						</div>
-						<a class="default-btn floating-btn" style="position: absolute; top: -3.5rem; left: 0rem;" onclick="openExpenseModal()"><i class="bi bi-plus"></i></a>
-					</section>
-				</div>
-			</main>
-		</div>
-		<script>
-			const _version = "1.0.0";
-		</script>
-		<script src="./resources/js/Utilities/jquery.min.js"></script>
-		<script src="./resources/js/Utilities/bootstrap.min.js"></script>
-		<script src="./resources/js/Utilities/bootstrap.bundle.min.js"></script>
-		<script src="./resources/js/Utilities/datatable.min.js"></script>
-		<script type="module" src="./resources/js/app.js?version=1.0.0"></script>
-	</body>
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Gestion financiera local</p>
+            <h1 id="view-title">Dashboard</h1>
+          </div>
+          <div class="month-controls">
+            <button class="icon-button" id="previous-month" title="Mes anterior">&lt;</button>
+            <input id="month-picker" type="month" />
+            <button class="icon-button" id="next-month" title="Mes siguiente">&gt;</button>
+          </div>
+        </header>
+
+        <section id="alert-area" class="alert-area"></section>
+        <section id="app-view"></section>
+      </main>
+    </div>
+  </body>
 </html>
