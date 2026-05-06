@@ -408,4 +408,7 @@ class AppController {
 
 window.addEventListener('DOMContentLoaded', () => {
   new AppController().start();
+  const hash = window.location.hash.slice(1);
+  const view = hash || 'dashboard';
+  document.querySelector(`.nav-link[data-route="${view}"]`).click();
 });
