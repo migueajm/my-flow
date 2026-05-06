@@ -26,6 +26,13 @@ Se implementa Clean Architecture por capas:
 - Alertas por cercania o exceso del presupuesto.
 - Reportes diarios, semanales, mensuales y comparacion entre meses.
 - Graficos de pastel, barras y lineas con Chart.js.
+- Tema claro, oscuro o sistema, persistido por usuario.
+- Idioma Espanol/Ingles segun navegador, con selector manual.
+- Pantalla de inicio de sesion maquetada y acceso como invitado.
+- Loader global preparado para futuras llamadas a API.
+- Menu hamburguesa en moviles.
+- Swipe a la derecha para editar y a la izquierda para eliminar gastos y movimientos.
+- Footer de autoria `@migueajm`.
 
 ## Ejecutar
 

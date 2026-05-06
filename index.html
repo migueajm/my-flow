@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="light" data-theme-mode="system">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,40 +10,94 @@
     <script type="module" src="./src/main.js"></script>
   </head>
   <body>
-    <div class="app-shell">
+    <section class="login-screen" id="login-screen">
+      <div class="login-panel">
+        <div class="brand login-brand">
+          <div class="brand-mark"><img src="./assets/favicon.png" alt="@migueajm" width="40" height="40"></div>
+          <div>
+            <strong data-i18n="appName">Gastos Personales</strong>
+            <span data-i18n="appSubtitle">Presupuesto 80/20</span>
+          </div>
+        </div>
+        <h1 data-i18n="loginTitle">Controla tu dinero con claridad</h1>
+        <p class="muted" data-i18n="loginSubtitle">Gestiona ingresos, gastos, ahorros e inversiones desde este navegador.</p>
+        <form class="login-form" id="login-form">
+          <label>
+            <span data-i18n="loginEmail">Correo electronico</span>
+            <input type="email" name="email" placeholder="correo@ejemplo.com" />
+          </label>
+          <label>
+            <span data-i18n="loginPassword">Contrasena</span>
+            <input type="password" name="password" placeholder="********" />
+          </label>
+          <button class="primary-button" type="submit" data-i18n="loginButton">Iniciar sesion</button>
+          <button class="secondary-button" id="guest-login" type="button" data-i18n="guestButton">Continuar como invitado</button>
+        </form>
+        <p class="muted login-note" data-i18n="authSoon">La autenticacion se conectara mas adelante.</p>
+      </div>
+    </section>
+
+    <div class="app-shell is-hidden" id="app-shell">
       <aside class="sidebar">
         <div class="brand">
-          <div class="brand-mark">$</div>
+          <div class="brand-mark"><img src="./assets/favicon.png" alt="@migueajm" width="40" height="40"></div>
           <div>
-            <strong>Gastos Personales</strong>
-            <span>Presupuesto 80/20</span>
+            <strong data-i18n="appName">Gastos Personales</strong>
+            <span data-i18n="appSubtitle">Presupuesto 80/20</span>
           </div>
         </div>
         <nav class="nav" aria-label="Principal">
-          <button class="nav-link active" data-route="dashboard">Dashboard</button>
-          <button class="nav-link" data-route="expenses">Gastos</button>
-          <button class="nav-link" data-route="income">Ingresos</button>
-          <button class="nav-link" data-route="savings">Ahorros</button>
-          <button class="nav-link" data-route="reports">Reportes</button>
+          <button class="nav-link active" data-route="dashboard" data-i18n="dashboard">Dashboard</button>
+          <button class="nav-link" data-route="expenses" data-i18n="expenses">Gastos</button>
+          <button class="nav-link" data-route="income" data-i18n="income">Ingresos</button>
+          <button class="nav-link" data-route="savings" data-i18n="savings">Ahorros</button>
+          <button class="nav-link" data-route="reports" data-i18n="reports">Reportes</button>
         </nav>
       </aside>
+      <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
       <main class="main">
         <header class="topbar">
+          <button class="hamburger-button" id="menu-toggle" aria-label="Abrir menu" type="button">&#9776;</button>
           <div>
-            <p class="eyebrow">Gestion financiera local</p>
+            <p class="eyebrow" data-i18n="localFinance">Gestion financiera local</p>
             <h1 id="view-title">Dashboard</h1>
           </div>
+          <div class="preference-controls">
+            <label class="compact-label">
+              <span data-i18n="theme">Tema</span>
+              <select id="theme-select">
+                <option value="system" data-i18n="themeSystem">Sistema</option>
+                <option value="light" data-i18n="themeLight">Claro</option>
+                <option value="dark" data-i18n="themeDark">Oscuro</option>
+              </select>
+            </label>
+            <label class="compact-label">
+              <span data-i18n="language">Idioma</span>
+              <select id="language-select">
+                <option value="system" data-i18n="languageSystem">Navegador</option>
+                <option value="es" data-i18n="languageSpanish">Espanol</option>
+                <option value="en" data-i18n="languageEnglish">Ingles</option>
+              </select>
+            </label>
+          </div>
           <div class="month-controls">
-            <button class="icon-button" id="previous-month" title="Mes anterior">&lt;</button>
+            <button class="icon-button" id="previous-month" title="Mes anterior" data-i18n-title="previousMonth">&lt;</button>
             <input id="month-picker" type="month" />
-            <button class="icon-button" id="next-month" title="Mes siguiente">&gt;</button>
+            <button class="icon-button" id="next-month" title="Mes siguiente" data-i18n-title="nextMonth">&gt;</button>
           </div>
         </header>
 
         <section id="alert-area" class="alert-area"></section>
         <section id="app-view"></section>
+        <footer class="app-footer">@migueajm</footer>
       </main>
+    </div>
+    <div class="global-loader" id="global-loader" aria-live="polite">
+      <div class="loader-card">
+        <div class="spinner"></div>
+        <strong data-loader-label>Cargando...</strong>
+      </div>
     </div>
   </body>
 </html>

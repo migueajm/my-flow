@@ -38,6 +38,25 @@ export class BudgetUseCases {
     return expense;
   }
 
+  updateExpense({ id, date, categoryId, amount, description }) {
+    const key = monthKeyFromDate(date);
+    const expense = new Expense({
+      id,
+      date,
+      categoryId,
+      amount,
+      description,
+      month: key.month,
+      year: key.year
+    });
+    this.repository.updateExpense(expense);
+    return expense;
+  }
+
+  deleteExpense(expenseId) {
+    this.repository.deleteExpense(expenseId);
+  }
+
   addAccount({ name, type }) {
     const account = {
       id: uid('account'),
@@ -63,5 +82,25 @@ export class BudgetUseCases {
     });
     this.repository.addMovement(movement);
     return movement;
+  }
+
+  updateMovement({ id, accountId, type, amount, date, description }) {
+    const key = monthKeyFromDate(date);
+    const movement = new Movement({
+      id,
+      accountId,
+      type,
+      amount,
+      date,
+      description,
+      month: key.month,
+      year: key.year
+    });
+    this.repository.updateMovement(movement);
+    return movement;
+  }
+
+  deleteMovement(movementId) {
+    this.repository.deleteMovement(movementId);
   }
 }
