@@ -4,31 +4,31 @@ import { metricCard } from "../components/templates.js";
 export function renderReports(state) {
   return `
     <section class="grid four">
-      ${metricCard('Ingreso', state.salary)}
-      ${metricCard('Gastos', state.expenseTotal)}
-      ${metricCard('Ahorros/Inversiones', state.savingsTotal)}
-      ${metricCard('Disponible gastos', state.expenseRemaining)}
+      ${metricCard(state.t('income'), state.salary, '', state.locale)}
+      ${metricCard(state.t('expenses'), state.expenseTotal, '', state.locale)}
+      ${metricCard(state.t('savings'), state.savingsTotal, '', state.locale)}
+      ${metricCard(state.t('available'), state.expenseRemaining, '', state.locale)}
     </section>
 
     <section class="grid two" style="margin-top:16px">
       <article class="panel">
-        <h2>Pastel: distribucion de gastos</h2>
+        <h2>${state.t('pieReport')}</h2>
         <div class="chart-box"><canvas id="report-pie-chart"></canvas></div>
       </article>
       <article class="panel">
-        <h2>Barras: gastos diarios</h2>
+        <h2>${state.t('dailyBars')}</h2>
         <div class="chart-box"><canvas id="daily-bar-chart"></canvas></div>
       </article>
     </section>
 
     <section class="grid two" style="margin-top:16px">
       <article class="panel">
-        <h2>Barras: gastos semanales</h2>
+        <h2>${state.t('weeklyBars')}</h2>
         <div class="chart-box"><canvas id="weekly-bar-chart"></canvas></div>
       </article>
       <article class="panel">
-        <h2>Lineas: evolucion mensual</h2>
-        <p class="muted">Gastos vs ahorros/inversiones. Total ahorro actual: ${formatCurrency(state.savingsTotal)}</p>
+        <h2>${state.t('monthlyLines')}</h2>
+        <p class="muted">${state.t('monthlyLinesHelp')} ${formatCurrency(state.savingsTotal, state.locale)}</p>
         <div class="chart-box"><canvas id="monthly-line-chart"></canvas></div>
       </article>
     </section>
@@ -53,9 +53,9 @@ export function drawReportCharts(state, chartManager) {
     data: {
       labels: state.dailyTotals.map(item => item.label),
       datasets: [{
-        label: 'Gastos diarios',
+        label: state.t('dailyBars'),
         data: state.dailyTotals.map(item => item.total),
-        backgroundColor: '#1d7a64'
+        backgroundColor: '#2196f3'
       }]
     },
     options: { responsive: true, maintainAspectRatio: false }
@@ -66,7 +66,7 @@ export function drawReportCharts(state, chartManager) {
     data: {
       labels: state.weeklyTotals.map(item => item.label),
       datasets: [{
-        label: 'Gastos semanales',
+        label: state.t('weeklyBars'),
         data: state.weeklyTotals.map(item => item.total),
         backgroundColor: '#457B9D'
       }]
@@ -80,17 +80,17 @@ export function drawReportCharts(state, chartManager) {
       labels: state.monthlyComparison.map(item => item.label),
       datasets: [
         {
-          label: 'Gastos',
+          label: state.t('expenses'),
           data: state.monthlyComparison.map(item => item.expenses),
           borderColor: '#c2413a',
           backgroundColor: 'rgba(194,65,58,.12)',
           tension: 0.35
         },
         {
-          label: 'Ahorros/Inversiones',
+          label: state.t('savings'),
           data: state.monthlyComparison.map(item => item.savings),
-          borderColor: '#1d7a64',
-          backgroundColor: 'rgba(29,122,100,.12)',
+          borderColor: '#2196f3',
+          backgroundColor: 'rgba(33,150,243,.12)',
           tension: 0.35
         }
       ]

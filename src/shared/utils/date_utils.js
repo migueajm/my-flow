@@ -20,15 +20,15 @@ export function shiftMonth(monthKey, delta) {
   return monthKeyFromDate(date);
 }
 
-export function formatMonth(monthKey) {
-  return new Intl.DateTimeFormat('es-MX', {
+export function formatMonth(monthKey, locale = 'es') {
+  return new Intl.DateTimeFormat(locale === 'en' ? 'en-US' : 'es-MX', {
     month: 'long',
     year: 'numeric'
   }).format(new Date(monthKey.year, monthKey.month - 1, 1));
 }
 
-export function formatDate(dateValue) {
-  return new Intl.DateTimeFormat('es-MX').format(new Date(dateValue));
+export function formatDate(dateValue, locale = 'es') {
+  return new Intl.DateTimeFormat(locale === 'en' ? 'en-US' : 'es-MX').format(new Date(dateValue));
 }
 
 export function getWeekOfMonth(dateValue) {

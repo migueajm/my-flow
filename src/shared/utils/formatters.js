@@ -1,10 +1,9 @@
-export const currencyFormatter = new Intl.NumberFormat('es-MX', {
-  style: 'currency',
-  currency: 'MXN'
-});
-
-export function formatCurrency(value) {
-  return currencyFormatter.format(Number(value || 0));
+export function formatCurrency(value, locale = 'es') {
+  const formatter = new Intl.NumberFormat(locale === 'en' ? 'en-US' : 'es-MX', {
+    style: 'currency',
+    currency: 'MXN'
+  });
+  return formatter.format(Number(value || 0));
 }
 
 export function toNumber(value) {

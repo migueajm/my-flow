@@ -50,12 +50,28 @@ export class FinanceService {
     return this.budgetUseCases.addExpense(payload);
   }
 
+  updateExpense(payload) {
+    return this.budgetUseCases.updateExpense(payload);
+  }
+
+  deleteExpense(expenseId) {
+    return this.budgetUseCases.deleteExpense(expenseId);
+  }
+
   addAccount(payload) {
     return this.budgetUseCases.addAccount(payload);
   }
 
   addMovement(payload) {
     return this.budgetUseCases.addMovement(payload);
+  }
+
+  updateMovement(payload) {
+    return this.budgetUseCases.updateMovement(payload);
+  }
+
+  deleteMovement(movementId) {
+    return this.budgetUseCases.deleteMovement(movementId);
   }
 
   getCategoryTotals(categories, expenses) {

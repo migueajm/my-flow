@@ -15,6 +15,14 @@ export class FinanceRepository {
     throw new Error('Not implemented');
   }
 
+  updateExpense() {
+    throw new Error('Not implemented');
+  }
+
+  deleteExpense() {
+    throw new Error('Not implemented');
+  }
+
   getExpensesByMonth() {
     throw new Error('Not implemented');
   }
@@ -28,6 +36,14 @@ export class FinanceRepository {
   }
 
   addMovement() {
+    throw new Error('Not implemented');
+  }
+
+  updateMovement() {
+    throw new Error('Not implemented');
+  }
+
+  deleteMovement() {
     throw new Error('Not implemented');
   }
 

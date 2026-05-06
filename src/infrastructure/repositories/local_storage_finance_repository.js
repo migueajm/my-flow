@@ -17,7 +17,7 @@ const DEFAULT_CATEGORIES = [
 ];
 
 export class LocalStorageFinanceRepository extends FinanceRepository {
-  constructor(storage = new SecureStorageManager('gastos-personales-web')) {
+  constructor(storage = new SecureStorageManager('my-flow-migueajm')) {
     super();
     this.storage = storage;
     this._ensureSeedData();
@@ -67,6 +67,19 @@ export class LocalStorageFinanceRepository extends FinanceRepository {
     this._writeCollection('expenses', expenses);
   }
 
+  updateExpense(expense) {
+    const expenses = this._readCollection('expenses');
+    this._writeCollection(
+      'expenses',
+      expenses.map(item => item.id === expense.id ? expense : item)
+    );
+  }
+
+  deleteExpense(expenseId) {
+    const expenses = this._readCollection('expenses');
+    this._writeCollection('expenses', expenses.filter(item => item.id !== expenseId));
+  }
+
   getExpensesByMonth(monthKey) {
     return this._readCollection('expenses')
       .filter(row => row.month === monthKey.month && row.year === monthKey.year)
@@ -94,6 +107,19 @@ export class LocalStorageFinanceRepository extends FinanceRepository {
     const movements = this._readCollection('movements');
     movements.push(movement);
     this._writeCollection('movements', movements);
+  }
+
+  updateMovement(movement) {
+    const movements = this._readCollection('movements');
+    this._writeCollection(
+      'movements',
+      movements.map(item => item.id === movement.id ? movement : item)
+    );
+  }
+
+  deleteMovement(movementId) {
+    const movements = this._readCollection('movements');
+    this._writeCollection('movements', movements.filter(item => item.id !== movementId));
   }
 
   getMovementsByMonth(monthKey) {
