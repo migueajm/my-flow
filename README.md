@@ -15,6 +15,8 @@ Se implementa Clean Architecture por capas:
 - `presentation/views`: vistas HTML generadas por JS.
 - `presentation/components`: charts y helpers de UI.
 
+<img src="https://raw.githubusercontent.com/migueajm/my-flow-app/refs/heads/main/assets/marketing3.png">
+
 ## Funcionalidades
 
 - Ingreso mensual con division automatica 80% gastos / 20% ahorro e inversion.
